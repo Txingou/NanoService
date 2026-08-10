@@ -1,9 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <PackageId>NanoService</PackageId>
+    <Description>面向 ARM32 嵌入式设备的 .NET 8 远程调用框架，提供类型安全序列化、ServiceId 路由与统一 TCP 客户端/服务端。</Description>
+    <Authors>Ming</Authors>
+    <PackageTags>rpc;tcp;embedded;arm32;iot;nanoservice</PackageTags>
+    <PackageProjectUrl>https://github.com/Txingou/NanoService</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/Txingou/NanoService.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
   <ItemGroup>
     <ProjectReference Include="..\NanoTransport\NanoTransport.csproj" />
     <PackageReference Include="TouchSocket.Core" Version="4.3.1" />
   </ItemGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="NanoService.Benchmarks" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="LICENSE" Pack="true" PackagePath="/" />
+    <None Include="README.md" Pack="true" PackagePath="/" />
   </ItemGroup>
 </Project>
