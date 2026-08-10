@@ -8,11 +8,13 @@ on:
 
 permissions:
   contents: read
+  id-token: write
 
 jobs:
   build-test-pack-publish:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    environment: production
 
     steps:
       - name: Checkout
@@ -35,15 +37,15 @@ jobs:
       - name: Pack NanoService
         run: dotnet pack src/NanoService -c Release -o artifacts/packages --no-restore
 
+      - name: NuGet login (OIDC -> temp API key)
+        uses: NuGet/login@v1
+        id: nuget-login
+        with:
+          user: ${{ vars.NUGET_USER || 'Mr.Ming' }}
+
       - name: Publish to NuGet
-        env:
-          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
         run: |
-          if [ -z "$NUGET_API_KEY" ]; then
-            echo "NUGET_API_KEY secret is not configured; skipping publish."
-            exit 0
-          fi
           dotnet nuget push artifacts/packages/*.nupkg \
-            --api-key "$NUGET_API_KEY" \
+            --api-key "${{ steps.nuget-login.outputs.NUGET_API_KEY }}" \
             --source https://api.nuget.org/v3/index.json \
             --skip-duplicate
