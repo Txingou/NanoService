@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\NanoTransport\NanoTransport.csproj" />
+    <PackageReference Include="TouchSocket.Core" Version="4.3.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="NanoService.Benchmarks" />
+  </ItemGroup>
+</Project>

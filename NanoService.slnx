@@ -1,0 +1,9 @@
+<Solution>
+  <Project Path="src/NanoTransport/NanoTransport.csproj" />
+  <Project Path="src/NanoService/NanoService.csproj" />
+  <Project Path="examples/NanoService.Demo.Shared/NanoService.Demo.Shared.csproj" />
+  <Project Path="examples/NanoService.Demo.Server/NanoService.Demo.Server.csproj" />
+  <Project Path="examples/NanoService.Demo.Client/NanoService.Demo.Client.csproj" />
+  <Project Path="tests/NanoService.Tests/NanoService.Tests.csproj" />
+  <Project Path="benchmarks/NanoService.Benchmarks/NanoService.Benchmarks.csproj" />
+</Solution>

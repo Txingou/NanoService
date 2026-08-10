@@ -1,0 +1,16 @@
+{
+  "environment": {
+    "os": "Windows 10 1809 x64",
+    "runtime": ".NET 8.0.23",
+    "sdk": "10.0.102",
+    "benchmarkDotNet": "0.15.8",
+    "job": "ShortRun, InProcessEmitToolchain, 3 iterations"
+  },
+  "results": [
+    { "method": "SerializeRoundtrip", "meanNs": 152.71, "allocatedBytes": 568 },
+    { "method": "ComputeServiceId", "meanNs": 64.96, "allocatedBytes": 64 },
+    { "method": "EncodePacket", "meanNs": 16.94, "allocatedBytes": 296 },
+    { "method": "EnqueuePacket", "meanNs": 117.04, "allocatedBytes": 284 },
+    { "method": "DispatchInProcess", "meanNs": 146.06, "allocatedBytes": 636 }
+  ]
+}

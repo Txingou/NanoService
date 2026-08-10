@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NanoService\NanoService.csproj" />
+    <ProjectReference Include="..\NanoService.Demo.Shared\NanoService.Demo.Shared.csproj" />
+  </ItemGroup>
+</Project>

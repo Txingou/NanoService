@@ -1,0 +1,27 @@
+{
+  "environment": {
+    "os": "Windows 10 1809 x64",
+    "runtime": ".NET 8.0.23",
+    "transport": "TCP loopback"
+  },
+  "load": {
+    "payloadBytes": 256,
+    "durationSeconds": 2,
+    "clientAttempts": 3676267,
+    "enqueued": 1398643,
+    "delivered": 1398643,
+    "dropped": 2277624,
+    "enqueueRatePerSecond": 699319,
+    "deliveredRatePerSecond": 699319,
+    "deliveredMegaBytesPerSecond": 170.73
+  },
+  "overload": {
+    "droppableCapacity": 8,
+    "enqueueAttempts": 10000,
+    "dropped": 9992,
+    "dropRatePercent": 99.92,
+    "totalMilliseconds": 0,
+    "reliableSecondEnqueueBlocked": true,
+    "reliableSecondEnqueueCompletedAfterRelease": true
+  }
+}

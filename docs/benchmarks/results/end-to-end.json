@@ -1,0 +1,20 @@
+{
+  "environment": {
+    "os": "Windows 10 1809 x64",
+    "runtime": ".NET 8.0.23",
+    "sdk": "10.0.102",
+    "benchmarkDotNet": "0.15.8",
+    "job": "ShortRun, InProcessEmitToolchain, 3 iterations",
+    "transport": "TCP loopback"
+  },
+  "throughputClientSideUs": {
+    "rawTcp": { "64": 20.90, "256": 19.76, "1024": 19.31, "4096": 21.92 },
+    "nanoTransportSendRaw": { "64": 0.0585, "256": 0.0816, "1024": 0.1809, "4096": 0.9763 },
+    "nanoServiceSend": { "64": 0.1996, "256": 0.3243, "1024": 0.8518, "4096": 5.0606 }
+  },
+  "latencyEchoRoundTripUs": {
+    "rawTcp": { "64": 70.97, "256": 70.87, "1024": 68.81, "4096": 73.64 },
+    "nanoTransport": { "64": 47.70, "256": 47.89, "1024": 55.40, "4096": 64.28 },
+    "nanoService": { "64": 51.06, "256": 50.63, "1024": 53.87, "4096": 64.71 }
+  }
+}

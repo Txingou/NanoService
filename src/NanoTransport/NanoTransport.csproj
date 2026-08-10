@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="TouchSocket" Version="4.3.1" />
+    <PackageReference Include="TouchSocket.Core" Version="4.3.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <InternalsVisibleTo Include="NanoService.Tests" />
+    <InternalsVisibleTo Include="NanoService.Benchmarks" />
+  </ItemGroup>
+</Project>

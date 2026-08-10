@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\NanoService\NanoService.csproj" />
+  </ItemGroup>
+</Project>

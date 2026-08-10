@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="InterfaceExample.Console/InterfaceExample.Console.csproj" />
+  <Project Path="InterfaceExample/InterfaceExample.csproj" />
+</Solution>
