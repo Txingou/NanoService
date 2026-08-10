@@ -1,0 +1,49 @@
+name: publish-nuget
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-test-pack-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: 8.0.x
+
+      - name: Restore
+        run: dotnet restore NanoService.slnx
+
+      - name: Test
+        run: dotnet test tests/NanoService.Tests -c Release --no-restore
+
+      - name: Pack NanoTransport
+        run: dotnet pack src/NanoTransport -c Release -o artifacts/packages --no-restore
+
+      - name: Pack NanoService
+        run: dotnet pack src/NanoService -c Release -o artifacts/packages --no-restore
+
+      - name: Publish to NuGet
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+        run: |
+          if [ -z "$NUGET_API_KEY" ]; then
+            echo "NUGET_API_KEY secret is not configured; skipping publish."
+            exit 0
+          fi
+          dotnet nuget push artifacts/packages/*.nupkg \
+            --api-key "$NUGET_API_KEY" \
+            --source https://api.nuget.org/v3/index.json \
+            --skip-duplicate

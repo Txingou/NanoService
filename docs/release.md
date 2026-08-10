@@ -19,7 +19,14 @@ dotnet pack src\NanoService -c Release -o artifacts\packages
 
 ## 发布 NuGet
 
+NuGet 发布已由 GitHub Actions 工作流 `.github/workflows/nuget-release.yml` 接管，无需在本地使用 API Key 推送。
+
+- 工作流在每次推送到 `main`（或手动触发）时执行：还原、测试、打包 `NanoService` 与 `NanoTransport`，然后发布到 nuget.org。
+- 首次配置：在 GitHub 仓库 Settings -> Secrets and variables -> Actions 中新增 secret `NUGET_API_KEY`，值为 nuget.org 的 API Key。
+- 推送使用 `--skip-duplicate`，重复版本不会被重新上传。
+- 本地如需手动打包，仍可使用：
+
 ```powershell
-dotnet nuget push artifacts\packages\NanoTransport.4.4.0.nupkg --api-key <API_KEY> --source https://api.nuget.org/v3/index.json
-dotnet nuget push artifacts\packages\NanoService.4.4.0.nupkg --api-key <API_KEY> --source https://api.nuget.org/v3/index.json
+dotnet pack src\NanoTransport -c Release -o artifacts\packages
+dotnet pack src\NanoService -c Release -o artifacts\packages
 ```
