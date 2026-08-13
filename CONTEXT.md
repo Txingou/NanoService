@@ -99,3 +99,11 @@ _Avoid_: 压测报告、压力测试
 **过载场景**:
 基准项目中的背压验证场景，通过调小 Droppable 容量并连续入队，验证丢新包与 Reliable 阻塞行为。
 _Avoid_: 崩溃测试、断连测试
+
+**Unity 客户端**:
+作为 TCP 客户端连接 Unity 服务端的 Unity 应用，负责遥测上报与命令接收。
+_Avoid_: 设备客户端、游戏客户端
+
+**Unity 服务端**:
+以 Linux Headless 构建运行的 Unity 应用，作为 TCP 服务端接收连接并下发命令。
+_Avoid_: 云端、.NET 服务端

@@ -7,3 +7,17 @@ BenchmarkDotNet.Artifacts/
 artifacts/
 *.user
 *.suo
+
+# Unity verification experiment
+experiments/unity-verify/Unity/[Ll]ibrary/
+experiments/unity-verify/Unity/[Tt]emp/
+experiments/unity-verify/Unity/[Oo]bj/
+experiments/unity-verify/Unity/[Bb]uild/
+experiments/unity-verify/Unity/[Bb]uilds/
+experiments/unity-verify/Unity/[Ll]ogs/
+experiments/unity-verify/Unity/[Uu]ser[Ss]ettings/
+experiments/unity-verify/Unity/MemoryCaptures/
+experiments/unity-verify/Unity/Assets/Packages/
+experiments/unity-verify/Unity/Packages/packages-lock.json
+experiments/unity-verify/output/
+experiments/unity-verify/*.log

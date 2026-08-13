@@ -122,6 +122,8 @@ dotnet run --project benchmarks/NanoService.Benchmarks -c Release -- load --payl
 
 ## 文档
 
+- [Unity 验证测试报告](experiments/unity-verify/TEST-REPORT.md)：Unity 2022.3 下 NanoService/NanoTransport 的兼容性、便利性、性能与适用场景验证
+- [Unity 使用教程](experiments/unity-verify/UNITY-QUICKSTART.md)：从零在 Unity 中安装并接入 NanoService/NanoTransport
 - `CONTEXT.md`：领域术语
 - `docs/adr/`：架构决策记录
 - `docs/benchmarks/`：性能基线
