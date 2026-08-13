@@ -41,7 +41,10 @@ public class NanoTcpService<TClient> : TcpService<TClient>, INanoTransport
 
     public bool SendRaw(string sessionId, uint serviceId, ReadOnlySpan<byte> body, bool allowDrop)
     {
-        ArgumentException.ThrowIfNullOrEmpty(sessionId);
+        if (string.IsNullOrEmpty(sessionId))
+        {
+            throw new ArgumentException("会话标识不能为空。", nameof(sessionId));
+        }
         return _core.TryEnqueue(serviceId, body, allowDrop, sessionId);
     }
 
@@ -50,7 +53,10 @@ public class NanoTcpService<TClient> : TcpService<TClient>, INanoTransport
     /// </summary>
     public virtual async Task StartAsync(IPHost listenHost, CancellationToken cancellationToken = default)
     {
-        ArgumentNullException.ThrowIfNull(listenHost);
+        if (listenHost is null)
+        {
+            throw new ArgumentNullException(nameof(listenHost));
+        }
         var config = BuildConfig();
         config.SetListenIPHosts([listenHost]);
         await SetupAsync(config).ConfigureAwait(false);

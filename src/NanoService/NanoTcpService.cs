@@ -68,7 +68,10 @@ public class NanoTcpService<TClient> : NanoTransport.NanoTcpService<TClient>
     public bool Send<TRequest>(TRequest request, TClient session)
         where TRequest : class
     {
-        ArgumentNullException.ThrowIfNull(session);
+        if (session is null)
+        {
+            throw new ArgumentNullException(nameof(session));
+        }
         return Send(request, session.Id);
     }
 

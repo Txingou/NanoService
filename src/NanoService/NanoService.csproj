@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <TargetFrameworks>net8.0;netstandard2.0;netstandard2.1;net462</TargetFrameworks>
     <PackageId>NanoService</PackageId>
-    <Description>面向 ARM32 嵌入式设备的 .NET 8 远程调用框架，提供类型安全序列化、ServiceId 路由与统一 TCP 客户端/服务端。</Description>
+    <Description>面向 ARM32 嵌入式设备的远程调用框架（RPC 层），支持 net8.0、netstandard2.0、netstandard2.1 与 net462，提供类型安全序列化、ServiceId 路由与统一 TCP 客户端/服务端。</Description>
     <Authors>Ming</Authors>
     <PackageTags>rpc;tcp;embedded;arm32;iot;nanoservice</PackageTags>
     <PackageProjectUrl>https://github.com/Txingou/NanoService</PackageProjectUrl>
@@ -13,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\NanoTransport\NanoTransport.csproj" />
     <PackageReference Include="TouchSocket.Core" Version="4.3.1" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" Condition="'$(TargetFramework)' == 'net462'" />
   </ItemGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="NanoService.Benchmarks" />

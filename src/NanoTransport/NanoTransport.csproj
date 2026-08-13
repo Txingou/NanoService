@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
+    <TargetFrameworks>net8.0;netstandard2.0;netstandard2.1;net462</TargetFrameworks>
     <PackageId>NanoTransport</PackageId>
-    <Description>面向 ARM32 嵌入式设备的轻量级 TCP 传输层，内置 12 字节协议头、双队列发送与背压丢弃策略。</Description>
+    <Description>面向 ARM32 嵌入式设备的轻量级 TCP 传输层，支持 net8.0、netstandard2.0、netstandard2.1 与 net462，内置 12 字节协议头、双队列发送与背压丢弃策略。</Description>
     <Authors>Ming</Authors>
     <PackageTags>tcp;transport;embedded;arm32;iot;nanoservice</PackageTags>
     <PackageProjectUrl>https://github.com/Txingou/NanoService</PackageProjectUrl>
@@ -13,6 +14,9 @@
   <ItemGroup>
     <PackageReference Include="TouchSocket" Version="4.3.1" />
     <PackageReference Include="TouchSocket.Core" Version="4.3.1" />
+    <PackageReference Include="System.Memory" Version="4.5.5" Condition="'$(TargetFramework)' != 'net8.0'" />
+    <PackageReference Include="System.Threading.Channels" Version="8.0.0" Condition="'$(TargetFramework)' != 'net8.0'" />
+    <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" Condition="'$(TargetFramework)' == 'net462'" />
   </ItemGroup>
   <ItemGroup>
     <InternalsVisibleTo Include="NanoService.Tests" />

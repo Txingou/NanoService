@@ -8,6 +8,13 @@
 dotnet add package NanoService
 ```
 
+## 目标框架
+
+- .NET 8
+- .NET Standard 2.0
+- .NET Standard 2.1
+- .NET Framework 4.6.2
+
 ## 特性
 
 - `NanoBinaryConverter<T>`：业务模型与字节之间的类型安全序列化

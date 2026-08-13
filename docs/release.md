@@ -4,6 +4,8 @@
 
 版本号统一维护在 `Directory.Build.props` 的 `<Version>` 中，需要发布新版本时手动递增（例如 `4.5.0 -> 4.6.0`），并同步更新 `AssemblyVersion` 与 `FileVersion`。
 
+支持的目标框架：`net8.0`、`netstandard2.0`、`netstandard2.1`、`net462`。
+
 ## GitHub Actions 发布
 
 仓库通过 `.github/workflows/build.yml` 使用 NuGet Trusted Publishing 发布，每次推送到 `main`（或手动触发）时执行：还原、测试、打包 `NanoTransport` 与 `NanoService`，然后发布到 nuget.org。

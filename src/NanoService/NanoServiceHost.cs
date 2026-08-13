@@ -18,7 +18,10 @@ public class NanoServiceHost : IDisposable
         where TRequest : class
         where TConverter : NanoBinaryConverter<TRequest>, new()
     {
-        ArgumentNullException.ThrowIfNull(service);
+        if (service is null)
+        {
+            throw new ArgumentNullException(nameof(service));
+        }
 
         var serviceId = ServiceIdHelper.Compute<TRequest>();
         if (!_services.TryAdd(serviceId, service))
@@ -32,7 +35,10 @@ public class NanoServiceHost : IDisposable
     /// </summary>
     public void Attach(INanoTransport transport)
     {
-        ArgumentNullException.ThrowIfNull(transport);
+        if (transport is null)
+        {
+            throw new ArgumentNullException(nameof(transport));
+        }
         if (_transport is not null)
         {
             _transport.PackageReceived -= OnPackageReceived;
@@ -47,8 +53,15 @@ public class NanoServiceHost : IDisposable
     /// </summary>
     public void Dispatch(uint serviceId, byte[] body, INanoCallContext context)
     {
-        ArgumentNullException.ThrowIfNull(body);
-        ArgumentNullException.ThrowIfNull(context);
+        if (body is null)
+        {
+            throw new ArgumentNullException(nameof(body));
+        }
+
+        if (context is null)
+        {
+            throw new ArgumentNullException(nameof(context));
+        }
 
         if (_services.TryGetValue(serviceId, out var service))
         {

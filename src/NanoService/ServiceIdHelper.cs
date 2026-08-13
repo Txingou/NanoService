@@ -23,7 +23,10 @@ public static class ServiceIdHelper
     /// </summary>
     public static uint Compute(Type type)
     {
-        ArgumentNullException.ThrowIfNull(type);
+        if (type is null)
+        {
+            throw new ArgumentNullException(nameof(type));
+        }
 
         var fullName = type.FullName ?? type.Name;
         var hash = OffsetBasis;

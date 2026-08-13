@@ -44,7 +44,10 @@ public class NanoTcpClient : TcpClient, INanoTransport
     /// </summary>
     public virtual async Task ConnectAsync(IPHost remoteHost, CancellationToken cancellationToken = default)
     {
-        ArgumentNullException.ThrowIfNull(remoteHost);
+        if (remoteHost is null)
+        {
+            throw new ArgumentNullException(nameof(remoteHost));
+        }
         var config = BuildConfig();
         config.SetRemoteIPHost(remoteHost);
         await SetupAsync(config).ConfigureAwait(false);

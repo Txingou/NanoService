@@ -23,7 +23,10 @@ public class NanoServiceClient
     public void Register<TRequest>(NanoBinaryConverter<TRequest> converter, SendPolicy policy = SendPolicy.Reliable)
         where TRequest : class
     {
-        ArgumentNullException.ThrowIfNull(converter);
+        if (converter is null)
+        {
+            throw new ArgumentNullException(nameof(converter));
+        }
 
         var serviceId = ServiceIdHelper.Compute<TRequest>();
         if (!_registrations.TryAdd(typeof(TRequest), new Registration((IFastBinaryConverter)converter, serviceId, policy)))
@@ -47,14 +50,20 @@ public class NanoServiceClient
     public bool Send<TRequest>(TRequest request, string sessionId)
         where TRequest : class
     {
-        ArgumentException.ThrowIfNullOrEmpty(sessionId);
+        if (string.IsNullOrEmpty(sessionId))
+        {
+            throw new ArgumentException("会话标识不能为空。", nameof(sessionId));
+        }
         return SendCore(request, sessionId);
     }
 
     private bool SendCore<TRequest>(TRequest request, string? sessionId)
         where TRequest : class
     {
-        ArgumentNullException.ThrowIfNull(request);
+        if (request is null)
+        {
+            throw new ArgumentNullException(nameof(request));
+        }
 
         if (!_registrations.TryGetValue(typeof(TRequest), out var registration))
         {
@@ -79,8 +88,19 @@ public class NanoServiceClient
             : _transport.SendRaw(sessionId, registration.ServiceId, body, allowDrop);
     }
 
-    private sealed record Registration(
-        IFastBinaryConverter Converter,
-        uint ServiceId,
-        SendPolicy Policy);
+    private sealed class Registration
+    {
+        public Registration(IFastBinaryConverter converter, uint serviceId, SendPolicy policy)
+        {
+            Converter = converter;
+            ServiceId = serviceId;
+            Policy = policy;
+        }
+
+        public IFastBinaryConverter Converter { get; }
+
+        public uint ServiceId { get; }
+
+        public SendPolicy Policy { get; }
+    }
 }
